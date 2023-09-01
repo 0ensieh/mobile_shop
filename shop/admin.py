@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import Product, Category, Image, Property, Description, TechnicalDescription, Contact, Banner, Comment
 
-admin.site.site_header = 'فروشگاه موبایل'
+admin.site.site_header = 'فروشگاه همتا'
 
 
 class CommentInline(admin.TabularInline):

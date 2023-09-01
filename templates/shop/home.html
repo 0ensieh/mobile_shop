@@ -1,5 +1,6 @@
 {% extends '../base.html' %}
 {% load humanize %}
+{% load static %}
 {% block title %} صفحه اصلی {% endblock %}
 {% block content %}
 
@@ -8,8 +9,8 @@
         <div class="row d-none d-sm-block">
             <div class="col-12 mb-3">
                 <div class="banner">
-                    <a href="{{ banners.0.link }}">
-                        <img src="{{ banners.0.image.url }}" alt="banner">
+                    <a href="#">
+                        <img src="{% static './images/banner-lg-01.gif' %}" alt="banner">
                     </a>
                 </div>
             </div>
@@ -20,48 +21,48 @@
                     <div class="swiper-container main-page-slider">
                         <div class="swiper-wrapper">
                             <div class="swiper-slide">
-                                <a href="{{ banners.1.link }}">
-                                    <img src="{{ banners.1.image.url }}" alt="">
+                                <a href="#">
+                                    <img src="{% static './images/main-slider/slider-1.jpg' %}" alt="">
                                 </a>
                             </div>
                             <div class="swiper-slide">
-                                <a href="{{ banners.2.link }}"">
-                                    <img src="{{ banners.2.image.url }}" alt="">
+                                <a href="#">
+                                    <img src="{% static './images/main-slider/slider-2.jpg' %}" alt="">
                                 </a>
                             </div>
                             <div class="swiper-slide">
-                                <a href="{{ banners.3.link }}">
-                                    <img src="{{ banners.3.image.url }}" alt="">
+                                <a href="#">
+                                    <img src="{% static './images/main-slider/slider-3.jpg' %}" alt="">
                                 </a>
                             </div>
                             <div class="swiper-slide">
-                                <a href="{{ banners.4.link }}">
-                                    <img src="{{ banners.4.image.url }}" alt="">
+                                <a href="#">
+                                    <img src="{% static './images/main-slider/slider-4.jpg' %}" alt="">
                                 </a>
                             </div>
                             <div class="swiper-slide">
-                                <a href="{{ banners.5.link }}">
-                                    <img src="{{ banners.5.image.url }}" alt="">
+                                <a href="#">
+                                    <img src="{% static './images/main-slider/slider-5.jpg' %}" alt="">
                                 </a>
                             </div>
                             <div class="swiper-slide">
-                                <a href="{{ banners.6.link }}">
-                                    <img src="{{ banners.6.image.url }}" alt="">
+                                <a href="#">
+                                    <img src="{% static './images/main-slider/slider-6.jpg' %}" alt="">
                                 </a>
                             </div>
                             <div class="swiper-slide">
-                                <a href="{{ banners.7.link }}">
-                                    <img src="{{ banners.7.image.url }}" alt="">
+                                <a href="#">
+                                    <img src="{% static './images/main-slider/slider-7.jpg' %}" alt="">
                                 </a>
                             </div>
                             <div class="swiper-slide">
-                                <a href="{{ banners.8.link }}">
-                                    <img src="{{ banners.8.image.url }}" alt="">
+                                <a href="#">
+                                    <img src="{% static './images/main-slider/slider-8.jpg' %}" alt="">
                                 </a>
                             </div>
                             <div class="swiper-slide">
-                                <a href="{{ banners.9.link }}">
-                                    <img src="{{ banners.9.image.url }}" alt="">
+                                <a href="#">
+                                    <img src="{% static './images/main-slider/slider-9.jpg' %}" alt="">
                                 </a>
                             </div>
                         </div>
@@ -80,15 +81,15 @@
                 <div class="row">
                     <div class="col-lg-12 col-sm-6 col-12">
                         <div class="banner mb-3">
-                            <a href="{{ banners.10.link }}">
-                                <img src="{{ banners.10.image.url }}" alt="banner">
+                            <a href="#">
+                                <img src="{% static './images/banner/banner-md-03.gif' %}" alt="banner">
                             </a>
                         </div>
                     </div>
                     <div class="col-lg-12 col-sm-6 col-12">
                         <div class="banner">
-                            <a href="{{ banners.11.link }}">
-                                <img src="{{ banners.11.image.url }}" alt="banner">
+                            <a href="#">
+                                <img src="{% static './images/banner/banner-md-2.jpg' %}" alt="banner">
                             </a>
                         </div>
                     </div>
@@ -100,15 +101,15 @@
                 <div class="row mt-4 mt-lg-0">
                     <div class="col-lg-12 col-sm-6 col-12">
                         <div class="banner mb-4">
-                            <a href="{{ banners.12.link }}">
-                                <img src="{{ banners.12.image.url }}" alt="banner">
+                            <a href="#">
+                                <img src="{% static './images/banner/banner-md-04.gif' %}" alt="banner">
                             </a>
                         </div>
                     </div>
                     <div class="col-lg-12 col-sm-6 col-12">
                         <div class="banner">
-                            <a href="{{ banners.13.link }}">
-                                <img src="{{ banners.13.image.url }}" alt="banner">
+                            <a href="#">
+                                <img src="{% static './images/banner/banner-md-05.gif' %}" alt="banner">
                             </a>
                         </div>
                     </div>
@@ -184,7 +185,7 @@
         <section class="product-carousel in-box">
             <div class="section-title">
                 <i class="fad fa-pen-nib"></i>
-                موبایل
+                جدید ترین محصولات
             </div>
             <div class="swiper-container slider-lg">
                 <div class="swiper-wrapper">
@@ -224,7 +225,7 @@
                                             <p>{{ product.price_after_discount|intcomma }} تومان</p>
                                         </div>
                                     {% endif %}
-                                    <a href="{% url 'cart:item_add' product.id %}" class="">
+                                    <a href="{% url 'cart:item_add' product.id %}?next={{request.path}}" class="">
                                         <i class="fad fa-cart-plus"></i>
                                         افزودن به سبد خرید
                                     </a>
@@ -241,29 +242,29 @@
         <div class="row mb-5">
             <div class="col-md-3 col-6 mb-lg-0 mb-3">
                 <div class="banner">
-                    <a href="{{ banners.14.link }}">
-                        <img src="{{ banners.14.image.url }}" alt="banner">
+                    <a href="#">
+                        <img src="{% static './images/banner/banner-sm-01.jpg' %}" alt="banner">
                     </a>
                 </div>
             </div>
             <div class="col-md-3 col-6 mb-lg-0 mb-3">
                 <div class="banner">
-                    <a href="{{ banners.15.link }}">
-                        <img src="{{ banners.15.image.url }}" alt="banner">
+                    <a href="#">
+                        <img src="{% static './images/banner/banner-sm-02.jpg' %}" alt="banner">
                     </a>
                 </div>
             </div>
             <div class="col-md-3 col-6 mb-lg-0 mb-3">
                 <div class="banner">
-                    <a href="{{ banners.16.link }}">
-                        <img src="{{ banners.16.image.url }}" alt="banner">
+                    <a href="#">
+                        <img src="{% static './images/banner/banner-sm-03.jpg' %}" alt="banner">
                     </a>
                 </div>
             </div>
             <div class="col-md-3  col-6 mb-lg-0 mb-3">
                 <div class="banner">
-                    <a href="{{ banners.17.link }}">
-                        <img src="{{ banners.17.image.url }}" alt="banner">
+                    <a href="#">
+                        <img src="{% static './images/banner/banner-sm-04.jpg' %}" alt="banner">
                     </a>
                 </div>
             </div>
@@ -271,15 +272,15 @@
         <div class="row mb-5">
             <div class="col-md-6 mb-lg-0 mb-3">
                 <div class="banner">
-                    <a href="{{ banners.18.link }}">
-                        <img src="{{ banners.18.image.url }}" alt="banner">
+                    <a href="#">
+                        <img src="{% static './images/banner/banner-md-01.jpg' %}" alt="banner">
                     </a>
                 </div>
             </div>
             <div class="col-md-6 mb-lg-0 mb-3">
                 <div class="banner">
-                    <a href="{{ banners.19.link }}">
-                        <img src="{{ banners.19.image.url }}" alt="banner">
+                    <a href="#">
+                        <img src="{% static './images/banner/banner-md-02.jpg' %}" alt="banner">
                     </a>
                 </div>
             </div>
@@ -322,10 +323,12 @@
                                     {% endif %}
                                     <p class="px-4">{{ product.get_price_after_discount|intcomma }} تومان </p>
                                 </div>
-                                
-                                <a href="{% url 'cart:item_add' product.id %}" class="">
-                                    <i class="fad fa-cart-plus"></i>
-                                    افزودن به سبد خرید
+
+                                <a href="{% url 'cart:item_add' product.id %}?next={{request.path}}">
+                                    <button onclick="" class="add-to-cart">
+                                        <i class="fad fa-cart-plus"></i>
+                                        افزودن به سبد خرید
+                                    </button>
                                 </a>
                             </div>
                         </div>

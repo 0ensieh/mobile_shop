@@ -20,7 +20,7 @@
                             <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 px-0">
                                 <div class="product-card pb-2">
                                     <div class="product-card-top">
-                                        <a href="" class="product-image">
+                                        <a href="{{ product.get_absolute_url }}" class="product-image">
                                             <img src="{{ product.images.first.image.url }}" alt="product image">
                                         </a>
                                     </div>
@@ -41,7 +41,7 @@
                                                 {{ product.price|intcomma }} تومان
                                             </del>
                                         </div>
-                                        <a href="{% url 'cart:item_add' product.id %}">
+                                        <a href="{% url 'cart:item_add' product.id %}?next={{request.path}}">
                                             <i class="fad fa-cart-plus"></i>
                                             افزودن به سبد خرید
                                         </a>

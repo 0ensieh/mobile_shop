@@ -1,0 +1,35 @@
+{% extends './base.html' %}
+{% load static %}
+
+{% block title %}ورود به همتا {% endblock %}
+
+{% block content %}
+   
+
+    <main class="page-content">
+        <div class="container">
+            <div class="auth-wrapper">
+                <div class="auth-form shadow-around">
+                    <div class="site-logo">
+                        <a href="#">
+                            <img src="{% static './images/logo.png' %}" alt="logo">
+                        </a>
+                    </div>
+                   
+                     {% if active %}
+                        <p class="text-center">
+                            اکانت شما فعال شد.
+                            برای ورود <a href="{% url 'login' %}"> کلیک</a> کنید
+                        
+                     {% else %}
+
+                        <p class="text-center">!!!لینک فعالسازی منقضی شده است. لطفا دوباره امتحان کنید</p>
+
+                     {% endif %}
+
+                   
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}

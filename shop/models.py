@@ -1,6 +1,5 @@
 from django.db import models
 from django.urls import reverse
-from tinymce.models import HTMLField 
 from decimal import Decimal
 from django.utils import timezone
 from account.models import User
@@ -49,12 +48,12 @@ class Product(models.Model):
     title = models.CharField(max_length=100, db_index=True, verbose_name="نام محصول")
     english_name = models.CharField(max_length=100, db_index=True, verbose_name="نام انگلیسی")
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='products', verbose_name="دسته بندی محصول")
-    slug = models.SlugField(unique=True, db_index=True, verbose_name="اسلاک محصول")
+    slug = models.SlugField(unique=True, db_index=True, verbose_name="اسلاگ محصول")
     brand = models.CharField(max_length=100, verbose_name="برند محصول")
     guarantee = models.PositiveIntegerField(verbose_name="گارانتی محصول")
     available = models.BooleanField(default=True, verbose_name="موجود است؟")
     price = models.PositiveIntegerField(verbose_name="قیمت")
-    price_after_discount = models.PositiveIntegerField(default=0, verbose_name="قیمت بعد از تخفیف")
+    price_after_discount = models.PositiveIntegerField(default=0 , verbose_name="قیمت بعد از تخفیف")
     created = models.DateTimeField(auto_now_add=True, verbose_name="تاریخ ایجاد")
     updated = models.DateTimeField(auto_now=True, verbose_name="تاریخ بروزرسانی")
     discount = models.PositiveIntegerField(verbose_name="درصد تخفیف")
@@ -140,7 +139,7 @@ class Property(models.Model):
 class Description(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='descriptions', verbose_name="محصول مربوطه")
     title = models.CharField(max_length=100, verbose_name="عنوان")
-    detail = HTMLField(verbose_name="جزئیات")
+    detail = models.TextField(verbose_name="جزئیات")
 
     class Meta:
         verbose_name = "توضیحات"
@@ -168,13 +167,14 @@ class TechnicalDescription(models.Model):
 class Banner(models.Model):
     image = models.ImageField(upload_to='banners/%Y/%m/%d', verbose_name="عکس")
     link = models.URLField(verbose_name="لینک")
+    title = models.CharField(max_length=100, unique=True)
 
     class Meta:
         verbose_name = "بنر"
         verbose_name_plural = "بنر ها"
 
     def __str__(self):
-        return self.link
+        return self.title
 
 
 class Comment(models.Model):

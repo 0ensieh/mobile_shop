@@ -1,0 +1,28 @@
+{% extends './base.html' %}
+{% load static %}
+
+{% block title %}ورود به همتا {% endblock %}
+
+{% block content %}
+   
+
+    <main class="page-content">
+        <div class="container">
+            <div class="auth-wrapper">
+                <div class="auth-form shadow-around">
+                    <div class="site-logo">
+                        <a href="#">
+                            <img src="{% static './images/logo.png' %}" alt="logo">
+                        </a>
+                    </div>
+                   
+                     لینک فعالسازی برای ایمیل شما ارسال شد.
+                     پس از تایید ایمیل، 
+    برای ورود <a href="{% url 'login' %}"> کلیک</a> کنید
+
+                   
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}

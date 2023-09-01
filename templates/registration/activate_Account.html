@@ -1,0 +1,6 @@
+
+{% autoescape off %}
+    سلام،
+    :‌برای فعالسازی اکانت خود در همتا، اینجا کلیک کنید
+     http://{{ domain }}{% url 'activate' uidb64=uid token=token %}
+{% endautoescape %}

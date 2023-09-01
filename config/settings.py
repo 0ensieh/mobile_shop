@@ -21,12 +21,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = ''
+SECRET_KEY = 'django-insecure-z0-#p3aviz71b8tdz!@ft=n6z#37+8ln0djvsh4k^$@!&h8a7d'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -89,16 +89,30 @@ TEMPLATES = [
 WSGI_APPLICATION = 'config.wsgi.application'
 
 
-DATABASES = {
-	'default': {
-		'ENGINE': 'django.db.backends.mysql',
-		'NAME': 'mydb',
-		'USER': 'root',
-		'PASSWORD': 'admin',
-		'HOST':'localhost',
-		'PORT':'3306',
-	}
-}
+# Database
+# https://docs.djangoproject.com/en/4.1/ref/settings/#databases
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+if DEBUG:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+        }
+    }
 
 
 # Password validation
@@ -159,34 +173,35 @@ CART_SESSION_ID = 'cart'
 CRISPY_TEMPLATE_PACK = 'bootstrap4' 
 
 
-
 TINYMCE_DEFAULT_CONFIG = {
-    'cleanup_on_startup': False,
-    'custom_undo_redo_levels': 20,
-    'selector': 'textarea',
-    'theme': 'silver',
-    'plugins': '''
-            textcolor save link image media preview codesample contextmenu
-            table code lists fullscreen  insertdatetime  nonbreaking
-            contextmenu directionality searchreplace wordcount visualblocks
-            visualchars code fullscreen autolink lists  charmap print  hr
-            anchor pagebreak
-            ''',
-    'toolbar1': '''
-            fullscreen preview bold italic underline | fontselect,
-            fontsizeselect  | forecolor backcolor | alignleft alignright |
-            aligncenter alignjustify | indent outdent | bullist numlist table |
-            | link image media | codesample |
-            ''',
-    'toolbar2': '''
-            visualblocks visualchars |
-            charmap hr pagebreak nonbreaking anchor |  code |
-            ''',
-    'contextmenu': 'formats | link image',
-    'menubar': True,
-    'statusbar': True,
-}
 
+   'height': 360,
+   'width': 750,
+   'cleanup_on_startup': True,
+   'custom_undo_redo_levels': 20,
+   'selector': 'textarea',
+   'theme': 'advanced',
+   'plugins': '''
+   textcolor save link image media preview codesample contextmenu
+   table code lists fullscreen insertdatetime nonbreaking
+   contextmenu directionality searchreplace wordcount visualblocks
+   visualchars code fullscreen autolink lists charmap print hr
+   anchor pagebreak
+   ''',
+   'toolbar1': '''
+   fullscreen preview bold italic underline | fontselect,
+   fontsizeselect | forecolor backcolor | alignleft alignright |
+   aligncenter alignjustify | indent outdent | bullist numlist table |
+   | link image media | codesample |
+   ''',
+   'toolbar2': '''
+   visualblocks visualchars |
+   charmap hr pagebreak nonbreaking anchor | code |
+   ''',
+   'contextmenu': 'formats | link image',
+   'menubar': True,
+   'statusbar': True,
+}
 
 
 LOGIN_REDIRECT_URL = 'account:profile'
@@ -199,11 +214,24 @@ AUTH_USER_MODEL = 'account.User'
 
 
 
-MERCHANT_ID = ''
+MERCHANT_ID = '6f1c037a-537d-4f15-86b6-87a1001f0483'
 
 ZARINPAL = {
     'gateway_request_url': 'https://www.zarinpal.com/pg/services/WebGate/wsdl',
-    'gateway_callback_url': 'http://127.0.0.1:2003/payment/verify',
+    'gateway_callback_url': 'http://hamta-shop.iran.liara.run/payment/verify',
     'merchant_id': MERCHANT_ID
 }
 
+# AUTHENTICATION_BACKENDS = [
+#     'django.contrib.auth.backends.ModelBackend', 
+#     'account.authentication.MobileBackend'
+# ]
+
+    
+
+EMAIL_USE_TLS = True 
+EMAIL_HOST = 'smtp.gmail.com'  
+EMAIL_HOST_USER = 'hamedmirzaei2001official@gmail.com'  
+EMAIL_HOST_PASSWORD = 'uguktxanbhlhqjcg'  
+EMAIL_PORT = 587  
+DATA_UPLOAD_MAX_MEMORY_SIZE = 10242880 
