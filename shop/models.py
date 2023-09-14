@@ -89,10 +89,10 @@ class Product(models.Model):
 
     def get_price_after_discount(self):
         return self.price - self.get_discount()
-
+    
 
     def category_to_str(self):
-	    return "، ".join([category.title for category in self.category.active()])
+	    return "، ".join([category.title for category in self.category.all()])
     
     category_to_str.short_description = "دسته‌بندی"
 

@@ -234,4 +234,8 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'hamedmirzaei2001official@gmail.com'  
 EMAIL_HOST_PASSWORD = 'uguktxanbhlhqjcg'  
 EMAIL_PORT = 587  
+
+
+
+
 DATA_UPLOAD_MAX_MEMORY_SIZE = 10242880 

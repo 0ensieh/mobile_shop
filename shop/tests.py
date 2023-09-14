@@ -2,6 +2,7 @@ from django.test import TestCase, Client
 from django.urls import reverse
 from decimal import Decimal
 from django.utils import timezone
+from django.utils.timezone import timedelta
 from account.models import User
 from shop.models import Category, Product, Image, Property, Description, TechnicalDescription, Banner, Comment, Contact
 from .forms import ContactForm, CommentForm, PostForm, ColorForm
@@ -290,3 +291,44 @@ class ModelIntegrationTest(TestCase):
         self.assertEqual(contact.phone, contact_data['phone'])
         self.assertEqual(contact.message, contact_data['message'])
  
+
+#  non functional test:
+class ProductModelTest(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        # Set up non-modified objects used by all test methods
+        Category.objects.create(title='Electronics', slug='electronics')
+        Product.objects.create(
+            title='Smartphone',
+            english_name='Phone',
+            category=Category.objects.get(id=1),
+            slug='smartphone',
+            brand='Samsung',
+            guarantee=2,
+            available=True,
+            price=500,
+            price_after_discount=450,
+            discount=10,
+            discount_time=timezone.now() + timedelta(days=7),
+            delivery=3,
+            number_sold=100
+        )
+
+    def test_title_max_length(self):
+        product = Product.objects.get(id=1)
+        max_length = product._meta.get_field('title').max_length
+        self.assertEquals(max_length, 100)
+
+    def test_brand_max_length(self):
+        product = Product.objects.get(id=1)
+        max_length = product._meta.get_field('brand').max_length
+        self.assertEquals(max_length, 100)
+
+    def test_get_price_after_discount(self):
+        product = Product.objects.get(id=1)
+        price_after_discount = product.get_price_after_discount()
+        self.assertEqual(price_after_discount, 450)
+
+    def test_check_discount_time(self):
+        product = Product.objects.get(id=1)
+        self.assertTrue(product.check_discount_time())

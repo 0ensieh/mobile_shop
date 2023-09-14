@@ -160,7 +160,8 @@ class PostModelTest(TestCase):
 
     def test_get_absolute_url(self):
         url = self.post.get_absolute_url()
-        expected_url = reverse('blog:post_detail', args=[self.post.publish.year, self.post.publish.month, self.post.publish.day, self.post.slug])
+        expected_url = reverse('blog:post_detail', args=[self.post.publish.year, self.post.publish.month,
+                                                          self.post.publish.day, self.post.slug])
         self.assertEqual(url, expected_url)
 
 
@@ -231,13 +232,15 @@ class BlogSystemTest(TestCase):
         )
 
     def test_post_detail_view(self):
-        url = reverse('blog:post_detail', args=[self.post.publish.year, self.post.publish.month, self.post.publish.day, self.post.slug])
+        url = reverse('blog:post_detail', args=[self.post.publish.year, self.post.publish.month, 
+                                                self.post.publish.day, self.post.slug])
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'Test Post')  # Ensure the post title is in the response
 
     def test_comment_creation(self):
-        url = reverse('blog:post_detail', args=[self.post.publish.year, self.post.publish.month, self.post.publish.day, self.post.slug])
+        url = reverse('blog:post_detail', args=[self.post.publish.year, self.post.publish.month, self.post.publish.day, 
+                                                self.post.slug])
         response = self.client.post(url, {
             'user': self.user.id,
             'title': 'New Comment',
@@ -248,7 +251,8 @@ class BlogSystemTest(TestCase):
         self.assertFalse(Comment.objects.filter(title='New Comment').exists())  # Check if the comment was created
 
     def test_comment_display_on_post(self):
-        url = reverse('blog:post_detail', args=[self.post.publish.year, self.post.publish.month, self.post.publish.day, self.post.slug])
+        url = reverse('blog:post_detail', args=[self.post.publish.year, self.post.publish.month, self.post.publish.day,
+                                                 self.post.slug])
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'Test Comment')  # Ensure the comment is displayed on the post detail page
